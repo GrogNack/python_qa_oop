@@ -1,0 +1,85 @@
+import math
+import random
+
+
+class Figure:
+
+    def __init__(self):
+        self._name = ''
+        self._area = 0
+        self._angles = 0
+        self._perimeter = 0
+
+    def get_name(self):
+        return self._name
+
+    def get_area(self):
+        return self._area
+
+    def get_angles(self):
+        return self._angles
+
+    def get_perimeter(self):
+        return self._perimeter
+
+    def add_area(self, argument):
+        if type(argument) not in [Rectangle, Triangle, Square, Circle]:
+            raise AttributeError("Переданный элемент не является фигурой")
+        return self._area + argument.get_area()
+
+
+class Triangle(Figure):
+
+    def __init__(self, a, b, c: int):
+        super().__init__()
+        self._name = 'Треугольник'
+        self._angles = 3
+        self.p = (a + b + c) / 2
+        self._perimeter = a + b + c
+        self._area = math.sqrt(self.p * (self.p - a) * (self.p - b) * (self.p - c))
+
+
+class Rectangle(Figure):
+
+    def __init__(self):
+        super().__init__()
+
+        self._angles = 4
+        self.a = random.randrange(1, 10)
+        self.b = random.randrange(1, 10)
+        self._name = f'Прямоугольник {self.a} на {self.b}'
+        self._perimeter = (self.a + self.b) * 2
+        self._area = (self.a * self.b)
+
+
+class Square(Rectangle):
+
+    def __init__(self):
+        super().__init__()
+        self._angles = 4
+        self.a = random.randrange(1, 10)
+        self._name = f'Квадрат {self.a} на {self.a}'
+        self._perimeter = self.a * 4
+        self._area = self.a ** 2
+
+
+class Circle(Figure):
+
+    def __init__(self):
+        super().__init__()
+        self._angles = 0
+        self.r = random.randrange(1, 10)
+        self._name = f'Круг с радиусом {self.r}'
+        self._perimeter = round(2 * math.pi * self.r)
+        self._area = round(math.pi * self.r ** 2)
+
+
+sq = Square()
+re = Rectangle()
+cir = Circle()
+tr = Triangle(3, 4, 5)
+print(sq.get_name() + ' | ' + str(sq.get_angles()) + ' | ' + str(sq.get_perimeter()) + ' | ' + str(sq.get_area()))
+print(re.get_name() + ' | ' + str(re.get_angles()) + ' | ' + str(re.get_perimeter()) + ' | ' + str(re.get_area()))
+print(cir.get_name() + ' | ' + str(cir.get_angles()) + ' | ' + str(cir.get_perimeter()) + ' | ' + str(cir.get_area()))
+print(tr.get_name() + ' | ' + str(tr.get_angles()) + ' | ' + str(tr.get_perimeter()) + ' | ' + str(tr.get_area()))
+print(tr.add_area(re))
