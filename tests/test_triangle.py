@@ -28,6 +28,6 @@ def test_get_angles():
 
 def test_get_add_area():
     tr = Triangle(3, 4, 5)
-    re = Rectangle()
-    assert type(re.add_area(tr)) == float
+    re = Rectangle(3, 4)
+    assert type(re.add_area(tr)) == int
     assert re.add_area(tr) > 6
