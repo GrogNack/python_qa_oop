@@ -36,31 +36,27 @@ class Triangle(Figure):
         self._angles = 3
         self.p = (a + b + c) / 2
         self._perimeter = a + b + c
-        self._area = math.sqrt(self.p * (self.p - a) * (self.p - b) * (self.p - c))
+        self._area = round(math.sqrt(self.p * (self.p - a) * (self.p - b) * (self.p - c)))
 
 
 class Rectangle(Figure):
 
-    def __init__(self):
+    def __init__(self, a, b: int):
         super().__init__()
-
         self._angles = 4
-        self.a = random.randrange(1, 10)
-        self.b = random.randrange(1, 10)
-        self._name = f'Прямоугольник {self.a} на {self.b}'
-        self._perimeter = (self.a + self.b) * 2
-        self._area = (self.a * self.b)
+        self._name = f'Прямоугольник {a} на {b}'
+        self._perimeter = (a + b) * 2
+        self._area = (a * b)
 
 
 class Square(Rectangle):
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, a: int):
+        super().__init__(a, a)
         self._angles = 4
-        self.a = random.randrange(1, 10)
-        self._name = f'Квадрат {self.a} на {self.a}'
-        self._perimeter = self.a * 4
-        self._area = self.a ** 2
+        self._name = f'Квадрат {a} на {a}'
+        self._perimeter = a * 4
+        self._area = a ** 2
 
 
 class Circle(Figure):
@@ -74,8 +70,8 @@ class Circle(Figure):
         self._area = round(math.pi * self.r ** 2)
 
 
-sq = Square()
-re = Rectangle()
+sq = Square(6)
+re = Rectangle(4, 5)
 cir = Circle()
 tr = Triangle(3, 4, 5)
 print(sq.get_name() + ' | ' + str(sq.get_angles()) + ' | ' + str(sq.get_perimeter()) + ' | ' + str(sq.get_area()))
