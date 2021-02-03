@@ -61,18 +61,17 @@ class Square(Rectangle):
 
 class Circle(Figure):
 
-    def __init__(self):
+    def __init__(self, r: int):
         super().__init__()
         self._angles = 0
-        self.r = random.randrange(1, 10)
-        self._name = f'Круг с радиусом {self.r}'
-        self._perimeter = round(2 * math.pi * self.r)
-        self._area = round(math.pi * self.r ** 2)
+        self._name = f'Круг с радиусом {r}'
+        self._perimeter = round(2 * math.pi * r)
+        self._area = round(math.pi * r ** 2)
 
 
 sq = Square(6)
 re = Rectangle(4, 5)
-cir = Circle()
+cir = Circle(2)
 tr = Triangle(3, 4, 5)
 print(sq.get_name() + ' | ' + str(sq.get_angles()) + ' | ' + str(sq.get_perimeter()) + ' | ' + str(sq.get_area()))
 print(re.get_name() + ' | ' + str(re.get_angles()) + ' | ' + str(re.get_perimeter()) + ' | ' + str(re.get_area()))
